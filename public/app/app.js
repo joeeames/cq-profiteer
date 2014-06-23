@@ -12,22 +12,19 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
   $routeProvider
-      .when('/', { templateUrl: '/partials/main/main', controller: 'mvMainCtrl'})
-      .when('/admin/users', { templateUrl: '/partials/admin/user-list',
-        controller: 'mvUserListCtrl', resolve: routeRoleChecks.admin
-      })
-      .when('/signup', { templateUrl: '/partials/account/signup',
-        controller: 'mvSignupCtrl'
-      })
-      .when('/profile', { templateUrl: '/partials/account/profile',
-        controller: 'mvProfileCtrl', resolve: routeRoleChecks.user
-      })
-      .when('/courses', { templateUrl: '/partials/courses/course-list',
-        controller: 'mvCourseListCtrl'
-      })
-      .when('/courses/:id', { templateUrl: '/partials/courses/course-details',
-        controller: 'mvCourseDetailCtrl'
-      })
+    .when('/', { templateUrl: '/partials/main/main', controller: 'mvMainCtrl'})
+    .when('/admin/users', { templateUrl: '/partials/admin/user-list',
+      controller: 'mvUserListCtrl', resolve: routeRoleChecks.admin
+    })
+    .when('/signup', { templateUrl: '/partials/account/signup',
+      controller: 'mvSignupCtrl'
+    })
+    .when('/profile', { templateUrl: '/partials/account/profile',
+      controller: 'mvProfileCtrl', resolve: routeRoleChecks.user
+    })
+    .when('/base', { templateUrl: '/partials/base/main',
+      controller: 'baseCtrl', resolve: routeRoleChecks.user
+    })
 
 });
 

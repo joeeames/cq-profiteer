@@ -12,7 +12,14 @@ var userSchema = mongoose.Schema({
   salt: {type:String, required:'{PATH} is required!'},
   hashed_pwd: {type:String, required:'{PATH} is required!'},
   roles: [String],
-  base: Object
+  gold: Number,
+  base: {
+    buildings: [{
+      name: String,
+      type: String,
+      rooms: Number
+    }]
+  }
 });
 userSchema.methods = {
   authenticate: function(passwordToMatch) {

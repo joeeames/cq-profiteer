@@ -7,11 +7,12 @@ var auth = require('./auth'),
 module.exports = function(app) {
 
   app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
+  app.get('/api/users/:id', auth.requiresApiLogin, users.getUser);
   app.post('/api/users', users.createUser);
   app.put('/api/users', users.updateUser);
 
-  app.get('/api/bases', bases.getBases);
-  app.get('/api/bases/:id', bases.getBaseById);
+//  app.get('/api/bases', bases.getBases);
+//  app.get('/api/bases/:id', bases.getBaseById);
 
   app.get('/partials/*', function(req, res) {
     res.render('../../public/app/' + req.params[0]);
