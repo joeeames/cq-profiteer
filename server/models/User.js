@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+  var mongoose = require('mongoose'),
     encrypt = require('../utilities/encryption');
 
 var userSchema = mongoose.Schema({
@@ -13,14 +13,16 @@ var userSchema = mongoose.Schema({
   hashed_pwd: {type:String, required:'{PATH} is required!'},
   roles: [String],
   gold: Number,
-  base: {
+  town: {
+    name: String,
     buildings: [{
       name: String,
-      type: String,
+      type:{type:String},
       rooms: Number
     }]
   }
 });
+
 userSchema.methods = {
   authenticate: function(passwordToMatch) {
     return encrypt.hashPwd(this.salt, passwordToMatch) === this.hashed_pwd;
@@ -38,13 +40,13 @@ function createDefaultUsers() {
       var salt, hash;
       salt = encrypt.createSalt();
       hash = encrypt.hashPwd(salt, 'joe');
-      User.create({firstName:'Joe',lastName:'Eames',username:'joe', salt: salt, hashed_pwd: hash, roles: ['admin'], base: {buildings:[{name:"Traveler's Inn",type:"inn",rooms:4}]}});
+      User.create({firstName:'Joe',lastName:'Eames',username:'joe', salt: salt, hashed_pwd: hash, money:100, roles: ['admin'], town: {name:'Your Town',buildings:[{name:"Traveler's Inn",type:"inn",rooms:4}]}});
       salt = encrypt.createSalt();
       hash = encrypt.hashPwd(salt, 'john');
-      User.create({firstName:'John',lastName:'Papa',username:'john', salt: salt, hashed_pwd: hash, base: {buildings:[{name:"Traveler's Inn",type:"inn",rooms:4}]}});
+      User.create({firstName:'John',lastName:'Papa',username:'john', salt: salt, hashed_pwd: hash, money:100, town: {name:'Your Town', buildings:[{name:"Traveler's Inn",type:"inn",rooms:4}]}});
       salt = encrypt.createSalt();
       hash = encrypt.hashPwd(salt, 'dan');
-      User.create({firstName:'Dan',lastName:'Wahlin',username:'dan', salt: salt, hashed_pwd: hash, base: {buildings:[{name:"Traveler's Inn",type:"inn",rooms:4}]}});
+      User.create({firstName:'Dan',lastName:'Wahlin',username:'dan', salt: salt, hashed_pwd: hash, money:100, town: {name:'Your Town',buildings:[{name:"Traveler's Inn",type:"inn",rooms:4}]}});
     }
   })
 };

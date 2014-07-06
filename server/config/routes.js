@@ -8,6 +8,7 @@ module.exports = function(app) {
 
   app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
   app.get('/api/users/:id', auth.requiresApiLogin, users.getUser);
+  app.post('/api/users/:id', auth.requiresApiLogin, users.updateUser);
   app.post('/api/users', users.createUser);
   app.put('/api/users', users.updateUser);
 

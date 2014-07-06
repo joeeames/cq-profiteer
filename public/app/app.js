@@ -22,9 +22,11 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/profile', { templateUrl: '/partials/account/profile',
       controller: 'mvProfileCtrl', resolve: routeRoleChecks.user
     })
-    .when('/base', { templateUrl: '/partials/base/main',
-      controller: 'baseCtrl', resolve: routeRoleChecks.user
+    .when('/town', { templateUrl: '/partials/town/town',
+      controller: 'townCtrl', resolve: routeRoleChecks.user
     })
+    .when('/town/edit', {templateUrl: '/partials/town/edit',
+      controller: 'editTownCtrl', resolve: routeRoleChecks.user})
 
 });
 

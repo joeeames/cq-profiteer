@@ -49,6 +49,10 @@ exports.updateUser = function(req, res) {
     req.user.salt = encrypt.createSalt();
     req.user.hashed_pwd = encrypt.hashPwd(req.user.salt, userUpdates.password);
   }
+  req.user.base = userUpdates.base;
+  req.user.gold = userUpdates.gold;
+  req.user.town.name = userUpdates.town.name;
+  console.log('new town name: ' + userUpdates.town.name);
   req.user.save(function(err) {
     if(err) { res.status(400); return res.send({reason:err.toString()});}
     res.send(req.user);
