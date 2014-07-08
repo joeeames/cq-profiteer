@@ -4,7 +4,11 @@ div.container
 			a(ng-show="editLinkVisible",class="editLink",href="/town/edit") Edit
 
 	p Your Gold: {{user.gold}}
-	div(ng-repeat="building in user.base.buildings")
+	h4 Buildings
+	div(ng-repeat="building in user.town.buildings")
 		div {{building.buildingType}}: {{building.name}} {{building.rooms}}
 
-	a(ng-click="processTurn()") Advance
+	Turns Available: 
+	a(ng-click="processTurn()") Next Turn
+
+	div(style="height:800px") hi

@@ -1,3 +1,3 @@
-angular.module('app').controller('navbarCtrl', function($scope) {
-
+angular.module('app').controller('navbarCtrl', function($scope, mvIdentity) {
+	$scope.identity = mvIdentity;
 });
